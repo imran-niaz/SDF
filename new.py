@@ -1,3 +1,5 @@
+import ipaddress
+import requests
 import dns.resolver
 
 def get_ns_records(domain):
@@ -22,7 +24,7 @@ def get_a_records(domain):
     except dns.resolver.NoAnswer:
         print(f"[-] Failed to resolve A records for {domain}")
     except dns.resolver.NXDOMAIN:
-        print(f"[-] {domain} does not exist")
+        print(f"[-] {domain} ..")
 
 def get_possible_subdomains(domain):
     subdomains = []
@@ -36,7 +38,7 @@ def get_possible_subdomains(domain):
         except dns.resolver.NoAnswer:
             print(f"  [-] Failed to resolve {subdomain}")
         except dns.resolver.NXDOMAIN:
-            print(f"  [-] {subdomain} does not exist")
+            print(f"  [-] {subdomain} ...")
 
 if __name__ == '__main__':
     domain = input("Enter a domain name: ")
